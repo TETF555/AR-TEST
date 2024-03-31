@@ -36,17 +36,18 @@
     <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
     <a-nft
       type="nft"
-      url="project-t/animal_hamster"
+      url="https://github.com/TETF555/AR-TEST/blob/main/project-t/animal_hamster.iset"
       smooth="true"
       smoothCount="10"
       smoothTolerance=".01"
       smoothThreshold="5"
     >
-      <a-entity
+     <a-box position="80 80 0" scale="70 70 70" color="tomato" wireframe="true" animation="property: rotation; to: 0 360 0; loop: true; dur: 20000" ></a-box>
+     <!-- <a-entity
         gltf-model="project-t/earth.glb"
         scale="5 5 5"
         position="150 300 -100"
-      >
+      >-->
       </a-entity>
     </a-nft>
     <a-entity camera></a-entity>
