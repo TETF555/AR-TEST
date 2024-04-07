@@ -1,7 +1,33 @@
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1.3.0/dist/aframe-master.min.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-  
+ 
+<script>
+    AFRAME.registerComponent('registerevents', {
+        init: function () {
+            var marker = this.el;
+
+            // マーカーを検出したイベントの登録
+            marker.addEventListener('markerFound', function () {
+                var markerId = marker.id;
+                console.log('markerFound', markerId);
+
+                // アニメーションの開始
+                document.querySelector('#box_test').emit('markerfound');
+            });
+
+            // マーカーを見失ったイベントの登録
+            marker.addEventListener('markerLost', function () {
+                var markerId = marker.id;
+                console.log('markerLost', markerId);
+
+                // アニメーションの停止
+                document.querySelector('#box_test').emit('markerlost');
+            });
+        }
+    });
+</script>
+
 <style>
   .arjs-loader {
     height: 100%;
@@ -44,12 +70,13 @@
       smoothTolerance=".01"
       smoothThreshold="5"
     >
+    <a-asset-item id="box_test" src="https://raw.githack.com/TETF555/AR-TEST/5001e4db020119998b90cefc986b48229c07cc9a/AnimationTestProject/model/box_anim.glb"></a-asset-item>
     <a-entity
           position="0 -20 -20"
           scale="100 100 100"
           rotation="0 0 180"
           height="-1"
-          gltf-model="https://raw.githack.com/TETF555/AR-TEST/5001e4db020119998b90cefc986b48229c07cc9a/AnimationTestProject/model/box_anim.glb"
+          gltf-model="#box_test"
           animation-mixer>
     </a-entity>
      <!--<a-box position="80 80 0" scale="70 70 70" color="tomato" wireframe="true" animation="property: rotation; to: 0 360 0; loop: true; dur: 20000" ></a-box>-->
